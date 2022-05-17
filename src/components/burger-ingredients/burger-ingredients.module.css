@@ -1,0 +1,25 @@
+.container {
+  width: 600px;
+}
+
+.title {
+  margin: 40px 0 20px 0;
+}
+.tab {
+  display: flex;
+}
+.content {
+  padding: 40px 0 0;
+  height: calc(100vh - 310px);
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.box {
+  width: 600px;
+  padding: 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}

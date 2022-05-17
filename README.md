@@ -1,2 +1,2 @@
-# StellatBurgers
+# StellarBurgers
 Проект Яндекс практикума

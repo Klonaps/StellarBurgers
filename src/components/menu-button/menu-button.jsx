@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import styles from './menu-button.module.css'
 
-const MenuButton = (props) => {
+const MenuButton = React.memo((props) => {
   return (
     <a href="/" className={`${styles.container} p-5`}>
     {props.children}
@@ -12,7 +12,7 @@ const MenuButton = (props) => {
     </p>
     </a>
   )
-}
+})
 
 MenuButton.propTypes = {
   title: PropTypes.string.isRequired,

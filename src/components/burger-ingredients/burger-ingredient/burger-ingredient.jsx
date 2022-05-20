@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from "prop-types";
+
+import { burgerIngredientType } from '../../../utils/prop-types'
 import {CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 
 import styles from './burger-ingredient.module.css'
 
-const BurgerItem = (props) => {
+const BurgerIngredient = React.memo((props) => {
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onClick={() => props.handleOpenModal(props.id)}>
       {props.count && <Counter count={props.count} size="default" />}
       <img className={styles.img} src={props.image} alt={props.name} />
       <div className={styles.price}>
@@ -18,13 +20,8 @@ const BurgerItem = (props) => {
       </p>
     </div>
   )
-}
+})
 
-BurgerItem.propTypes = {
-  count: PropTypes.number,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
-}
+BurgerIngredient.propTypes = PropTypes.shape(burgerIngredientType.isRequired).isRequired
 
-export default BurgerItem
+export default BurgerIngredient

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 import styles from './burger-constructor.module.css'
 
-import { PTcurrentOrder } from '../../utils/prop-types';
+import { ingredientType } from '../../utils/prop-types';
 import {ConstructorElement, Button, DragIcon, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
-const BurgerConstructor = (props) => {
+const BurgerConstructor = React.memo((props) => {
   return (
     <section className={styles.container}>
       <div className={styles.items}>
@@ -51,17 +51,18 @@ const BurgerConstructor = (props) => {
           </p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" onClick={props.handleOpenModal}>
           Оформить заказ
         </Button>
       </div>
     </section>
   )
-}
+})
 
 BurgerConstructor.propTypes = {
-  currentOrder: PropTypes.arrayOf(PTcurrentOrder.isRequired).isRequired,
-  sum: PropTypes.number.isRequired
+  currentOrder: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
+  sum: PropTypes.number.isRequired,
+  handleOpenModal: PropTypes.func,
 }
 
 export default BurgerConstructor

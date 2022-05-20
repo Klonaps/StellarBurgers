@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0 60px 0;
+}
+.number {
+  text-shadow: 0 0 16px #3333FF;
+  margin-bottom: 32px;
+}
+.numberDescription {
+  margin-bottom: 60px;
+}
+.check {
+  width: 107px;
+  height: 102px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+.checkImg {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+.status {
+  margin-bottom: 8px;
+}

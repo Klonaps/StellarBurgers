@@ -1,3 +1,30 @@
+.loaderBox {
+  width: 100%;
+  height: calc(100vh - 88px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #2F2F37;
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .container {
   max-width: 1240px;
   display: flex;

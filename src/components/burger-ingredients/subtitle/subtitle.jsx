@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from "prop-types";
 
-const Subtitle = (props) => {
+import styles from './subtitle.module.css'
+
+const Subtitle = React.forwardRef((props, ref) => {
   return (
-      <p className="text text_type_main-medium" style={{marginBottom: 24}}>
+      <p ref={ref} className={`${styles.subtitle} text text_type_main-medium`}>
         {props.subtitle}
       </p>
   )
-}
+})
 
 Subtitle.propTypes = {
   subtitle: PropTypes.string.isRequired

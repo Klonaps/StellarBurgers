@@ -17,9 +17,9 @@
 .box {
   width: 600px;
   padding: 0 16px;
+  margin-bottom: 8px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 8px;
   box-sizing: border-box;
 }

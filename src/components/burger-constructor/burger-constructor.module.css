@@ -1,0 +1,53 @@
+.container {
+  margin-top: 100px;
+  width: 600px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.bun {
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  overflow-x: hidden;
+}
+.scrollableItems {
+  width: 600px;
+  box-sizing: border-box;
+  padding: 0 16px;
+  margin: 16px 0;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: calc(100vh - 506px);
+}
+.item {
+  width: 568px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bottomBox {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+.price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+}

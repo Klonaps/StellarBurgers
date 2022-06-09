@@ -1,0 +1,29 @@
+.container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 49;
+}
+.modal {
+  opacity: 100%;
+  position: absolute;
+  max-width: 720px;
+  min-width: 720px;
+  background: #1C1C21;
+  border-radius: 40px;
+  z-index: 99;
+}
+.content {
+  padding: 40px 40px 60px;
+  position: relative;
+  z-index: 99;
+}
+.cross {
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  cursor: pointer;
+}

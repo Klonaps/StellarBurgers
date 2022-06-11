@@ -1,66 +1,54 @@
 import React from 'react'
 import Modal from '../modal/modal'
-import PropTypes from "prop-types";
-
-import { ingredientType } from '../../utils/prop-types'
+import { useSelector } from 'react-redux'
 import styles from './ingredient-details.module.css'
 
-const IngredientDetails = (props) => {
+const IngredientDetails = () => {
+  const { info } = useSelector(store => store.ingredientDetails)
   return (
-    <Modal title="Детали ингредиента" handlerCloseModal={props.handlerCloseModal}>
-      {props.data && props.data.filter(
-        ingredient => {
-          return ingredient._id.includes(props.id)
-        }).map(ingredient => 
-          <div className={styles.container} key={ingredient._id}>
-            <img className={styles.img} src={ingredient.image_large} alt={ingredient.name}/>
-            <p className={`text text_type_main-medium ${styles.name}`}>
-              {ingredient.name}
-            </p>
-            <div className={styles.description}>
-              <div className={styles.box}>
-                <div className={`text text_type_main-default text_color_inactive`}>
-                  Калории, ккал
-                </div>
-                <div className={`text text_type_digits-default text_color_inactive`}>
-                  {ingredient.calories}
-                </div>
-              </div>
-              <div className={styles.box}>
-                <p className={`text text_type_main-default text_color_inactive`}>
-                  Белки, г
-                </p>
-                <p className={`text text_type_digits-default text_color_inactive`}>
-                  {ingredient.proteins}
-                </p>
-              </div>
-              <div className={styles.box}>
-                <p className={`text text_type_main-default text_color_inactive`}>
-                  Жиры, г
-                </p>
-                <p className={`text text_type_digits-default text_color_inactive`}>
-                  {ingredient.fat}
-                </p>
-              </div>
-              <div className={styles.box}>
-                <p className={`text text_type_main-default text_color_inactive`}>
-                  Углеводы, г
-                </p>
-                <p className={`text text_type_digits-default text_color_inactive`}>
-                  {ingredient.carbohydrates}
-                </p>
-              </div>
+    <Modal title="Детали ингредиента">
+      <div className={styles.container}>
+        <img className={styles.img} src={info.image_large} alt={info.name}/>
+        <p className={`text text_type_main-medium ${styles.name}`}>
+          {info.name}
+        </p>
+        <div className={styles.description}>
+          <div className={styles.box}>
+            <div className={`text text_type_main-default text_color_inactive`}>
+              Калории, ккал
+            </div>
+            <div className={`text text_type_digits-default text_color_inactive`}>
+              {info.calories}
             </div>
           </div>
-        )
-      }
+          <div className={styles.box}>
+            <p className={`text text_type_main-default text_color_inactive`}>
+              Белки, г
+            </p>
+            <p className={`text text_type_digits-default text_color_inactive`}>
+              {info.proteins}
+            </p>
+          </div>
+          <div className={styles.box}>
+            <p className={`text text_type_main-default text_color_inactive`}>
+              Жиры, г
+            </p>
+            <p className={`text text_type_digits-default text_color_inactive`}>
+              {info.fat}
+            </p>
+          </div>
+          <div className={styles.box}>
+            <p className={`text text_type_main-default text_color_inactive`}>
+              Углеводы, г
+            </p>
+            <p className={`text text_type_digits-default text_color_inactive`}>
+              {info.carbohydrates}
+            </p>
+          </div>
+        </div>
+      </div>
     </Modal>
   )
-}
-
-IngredientDetails.propTypes = {
-  data: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
-  handlerCloseModal: PropTypes.func,
 }
 
 export default IngredientDetails

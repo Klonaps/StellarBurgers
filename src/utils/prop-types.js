@@ -15,12 +15,3 @@ export const ingredientType = PropTypes.shape({
   __v: PropTypes.number,
   count: PropTypes.number
 })
-
-export const burgerIngredientType = {
-  id: PropTypes.string,
-  count: PropTypes.number,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  handleOpenModal: PropTypes.func
-}

@@ -31,12 +31,9 @@ export const orderIngredientReducer = (state = initialState, action) => {
       }
     }
     case SORT_BURGER_INGREDIENTS: {
-      const ingredientIndex = [...state.ingredients].filter(item => item.uuid !== action.payload.uuid).findIndex(item => item.uuid === action.oldElemet)
-      const newIngredientPosition = [...state.ingredients].filter(item => item.uuid !== action.payload.uuid)
-      newIngredientPosition.splice(ingredientIndex, 0, action.payload)
       return {
         ...state,
-        ingredients: [...newIngredientPosition],
+        ingredients: [...action.payload],
       }
     }
     default:

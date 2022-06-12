@@ -1,4 +1,4 @@
-import { BASE_URL, orders } from '../../utils/API'
+import { BASE_URL, orders, checkResponse } from '../../utils/API'
 
 export const POST_ORDER_REQUEST = 'POST_ORDER_REQUEST'
 export const POST_ORDER_SUCCESS = 'POST_ORDER_SUCCESS'
@@ -17,9 +17,8 @@ export function postOrder(body) {
       },
       body: JSON.stringify(body)
     })
+      .then(checkResponse)
       .then(res => {
-        return res.ok ? res.json() : res.json().then(err => Promise.reject(err))
-      }).then(res => {
         if (res && res.success) {
           dispatch({
             type: POST_ORDER_SUCCESS,

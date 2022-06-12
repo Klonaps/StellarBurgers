@@ -1,23 +1,18 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from "prop-types"
-import { useDispatch } from 'react-redux'
-import { CLOSE_MODAL } from '../../services/actions/modal-actions'
-import { DELETE_INGREDIENT_INFO } from '../../services/actions/ingredient-details-actions'
 
 import ModalOverlay from '../modal-overlay/modal-overlay'
-
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './modal.module.css'
 
 const modalRoot = document.getElementById("modalRoot")
 
 const Modal = React.memo((props) => {
-  const dispatch = useDispatch()
   const closeModal = () => {
-    dispatch({ type: CLOSE_MODAL })
-    dispatch({ type: DELETE_INGREDIENT_INFO })
+    props.handlerChangeState(false)
   }
+
   useEffect(() => {
     const keydownCloseModal = (e) => {
       if(e.key === "Escape"){
@@ -50,7 +45,8 @@ const Modal = React.memo((props) => {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  handlerChangeState: PropTypes.func.isRequired
 }
 
 export default Modal

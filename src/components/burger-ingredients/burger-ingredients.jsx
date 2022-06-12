@@ -5,14 +5,12 @@ import { useInView } from 'react-intersection-observer'
 import Tabs from './tabs/tabs'
 import Subtitle from './subtitle/subtitle'
 import BurgerIngredient from './burger-ingredient/burger-ingredient'
-import IngredientDetails from '../ingredient-details/ingredient-details'
 
 import styles from './burger-ingredients.module.css'
 
 
 const BurgerIngredients = () => {
   const data = useSelector(state => state.ingredients.ingredients)
-  const { detailsModalOpen } = useSelector(state => state.modal)
   const [current, setCurrent] = useState('one')
 
   const bunRef = useRef(null)
@@ -35,7 +33,6 @@ const BurgerIngredients = () => {
 
   return (
     <section className={styles.container}>
-      {detailsModalOpen && <IngredientDetails/>}
       <p className={`text text_type_main-large ${styles.title}`}>Соберите бургер</p>
       <Tabs styles={styles.tab} current={current} setCurrent={setCurrent} refs={[bunRef.current, mainRef.current, sauceRef.current]}/>
       <div className={`${styles.content} custom-scroll`}>

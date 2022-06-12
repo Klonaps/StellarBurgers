@@ -13,7 +13,6 @@ import IngredientBox from './ingredient-box/ingredient-box'
 const BurgerConstructor = React.memo(() => {
   const dispatch = useDispatch()
   const { bun, ingredients } = useSelector(store => store.orderIngredient)
-  const uuid = uuidv4()
 
   const [, dropRef] = useDrop({
     accept: 'ingredient',
@@ -22,6 +21,7 @@ const BurgerConstructor = React.memo(() => {
     }
   })
   const onDropHandler = (item) => {
+    const uuid = uuidv4()
     if (item.type !== 'bun') {
       dispatch(addBurgerIngredient(item, uuid))
     } else {

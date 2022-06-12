@@ -1,19 +1,16 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { OPEN_ORDER_MODAL } from '../../../services/actions/modal-actions'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import OrderDetails from '../../order-details/order-details'
+import Modal from '../../modal/modal'
 import styles from './price-box.module.css'
 
 const PriceBox = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const {ingredients, bun} = useSelector(store => store.orderIngredient)
-  const { orderModalOpen } = useSelector(store => store.modal)
-  const dispatch = useDispatch()
 
   const handlerOpenModal = () => {
-    dispatch({
-      type: OPEN_ORDER_MODAL
-    })
+    setIsModalVisible(true)
   }
 
   const totalPrice = () => {
@@ -22,7 +19,7 @@ const PriceBox = () => {
 
   return (
     <>
-      {orderModalOpen && <OrderDetails/>}
+      {isModalVisible && <Modal handlerChangeState={setIsModalVisible}><OrderDetails/></Modal>}
       {totalPrice() === 0 ? "" :
         <div className={styles.bottomBox}>
           <div className={styles.price}>

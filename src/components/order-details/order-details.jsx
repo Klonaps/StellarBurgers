@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Modal from '../modal/modal'
 import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../loader/loader'
 import { postOrder } from '../../services/actions/order-actions'
@@ -27,7 +26,7 @@ const OrderDetails = () => {
   }, [dispatch, bun, ingredients])
 
   return (
-    <Modal>
+    <>
       {orderFailed ? 
         <div className={styles.box}>
           <p className="text text_type_main-large">
@@ -60,7 +59,7 @@ const OrderDetails = () => {
           }
         </>
       }
-    </Modal>
+    </>
   )
 }
 

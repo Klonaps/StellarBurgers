@@ -1,4 +1,4 @@
-import { BASE_URL, ingredients } from '../../utils/API'
+import { BASE_URL, ingredients, checkResponse } from '../../utils/API'
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST'
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS'
@@ -11,9 +11,8 @@ export function getIngredients() {
       type: GET_INGREDIENTS_REQUEST,
     })
     fetch(BASE_URL + ingredients)
+      .then(checkResponse)
       .then(res => {
-        return res.ok ? res.json() : res.json().then(err => Promise.reject(err))
-      }).then(res => {
         if (res && res.success) {
           dispatch({
             type: GET_INGREDIENTS_SUCCESS,

@@ -1,0 +1,30 @@
+.up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 536px;
+  min-height: 80px;
+  border-radius: 88px 88px 40px 40px;
+  background: #2f2f37;
+  margin-left: 32px;
+}
+.middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 536px;
+  min-height: 80px;
+  border-radius: 40px;
+  background: #2f2f37;
+  margin-left: 32px;
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 536px;
+  min-height: 80px;
+  border-radius: 40px 40px 88px 88px;
+  background: #2f2f37;
+  margin-left: 32px;
+}

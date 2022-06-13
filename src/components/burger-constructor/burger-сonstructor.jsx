@@ -1,68 +1,61 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from 'react-redux'
+import { addBurgerIngredient, addBurgerBuns } from '../../services/actions/order-ingredient-actions'
+import { useDrop } from 'react-dnd'
+import { v4 as uuidv4 } from 'uuid'
 
 import styles from './burger-constructor.module.css'
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
+import NoneIngredient from './none-ingredient/none-ingredient'
+import PriceBox from './price-box/price-box'
+import IngredientBox from './ingredient-box/ingredient-box'
 
-import { ingredientType } from '../../utils/prop-types';
-import {ConstructorElement, Button, DragIcon, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+const BurgerConstructor = React.memo(() => {
+  const dispatch = useDispatch()
+  const { bun, ingredients } = useSelector(store => store.orderIngredient)
 
-const BurgerConstructor = React.memo((props) => {
+  const [, dropRef] = useDrop({
+    accept: 'ingredient',
+    drop(item) {
+      onDropHandler(item);
+    }
+  })
+  const onDropHandler = (item) => {
+    const uuid = uuidv4()
+    if (item.type !== 'bun') {
+      dispatch(addBurgerIngredient(item, uuid))
+    } else {
+      dispatch(addBurgerBuns(item, uuid))
+    }
+  }
+
   return (
     <section className={styles.container}>
-      <div className={styles.items}>
+      <div className={styles.items} ref={dropRef}>
         <div className={styles.bun}>
-          <ConstructorElement
-            type="top"
-            isLocked={true}
-            text={`${props.currentOrder[0].name} (верх)`}
-            price={props.currentOrder[0].price}
-            thumbnail={props.currentOrder[0].image}
-          />
-        </div>
-        <div className={`${styles.scrollableItems} custom-scroll`}>
-          {props.currentOrder.map((order, index) => (
-            order.type !== "bun" ?
-            <div key={index} className={styles.item}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text={order.name}
-                price={order.price}
-                thumbnail={order.image}
-              />
-            </div>
+          {bun.length === 0 ?
+            <NoneIngredient title="Добавьте булку" type="up"/>
             :
-            ''
-          ))}
+            <ConstructorElement type="top" isLocked={true} text={`${bun[0].name} (верх)`} price={bun[0].price} thumbnail={bun[0].image}/>
+          }
         </div>
+          <div className={`${styles.scrollableItems} custom-scroll`}>
+            {ingredients.length === 0 ? <NoneIngredient title="Добавьте ингредиент"/> : ''}
+            {ingredients.map((ingredient) => (
+              <IngredientBox key={ingredient.uuid} {...ingredient}/>
+            ))}
+          </div>
         <div className={styles.bun}>
-          <ConstructorElement
-            type="bottom"
-            isLocked={true}
-            text={`${props.currentOrder[0].name} (низ)`}
-            price={props.currentOrder[0].price}
-            thumbnail={props.currentOrder[0].image}
-          />
+          {bun.length === 0 ?
+            <NoneIngredient title="Добавьте булку" type="bottom"/>
+            :
+            <ConstructorElement type="bottom" isLocked={true} text={`${bun[0].name} (низ)`} price={bun[0].price} thumbnail={bun[0].image} />
+          }
         </div>
       </div>
-      <div className={styles.bottomBox}>
-        <div className={styles.price}>
-          <p className="text text_type_digits-medium">
-            {props.sum}
-          </p>
-          <CurrencyIcon type="primary" />
-        </div>
-        <Button type="primary" size="large" onClick={props.handleOpenModal}>
-          Оформить заказ
-        </Button>
-      </div>
+      <PriceBox />
     </section>
   )
 })
-
-BurgerConstructor.propTypes = {
-  currentOrder: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
-  sum: PropTypes.number.isRequired,
-  handleOpenModal: PropTypes.func,
-}
 
 export default BurgerConstructor

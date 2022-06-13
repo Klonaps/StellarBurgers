@@ -1,0 +1,13 @@
+.bottomBox {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+.price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+}

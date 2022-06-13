@@ -6,6 +6,8 @@
   align-items: center;
   text-align: center;
   margin-bottom: 32px;
+  background: #131316;
+  border-radius: 25px;
 }
 
 .img {

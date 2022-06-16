@@ -1,8 +1,9 @@
 import React from 'react'
+import ResetPasswordPage from '../components/reset-password-page/reset-password-page'
 
 const ResetPassword = () => {
   return (
-    <div>reset-password</div>
+    <ResetPasswordPage />
   )
 }
 

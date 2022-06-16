@@ -1,0 +1,19 @@
+.box {
+  width: 100%;
+  height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  margin-bottom: 24px;
+}
+.input {
+  margin-bottom: 24px;
+  height: 66px;
+}
+.registration {
+  margin-top: 80px;
+  margin-bottom: 16px;
+}

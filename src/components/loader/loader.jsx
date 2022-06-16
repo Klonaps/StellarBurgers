@@ -1,9 +1,12 @@
 import React from 'react'
 import styles from './loader.module.css'
 
-const Loader = () => {
+const Loader = ({ fullscreen }) => {
+  const cn = fullscreen ? styles.fullscreen : ''
   return (
-    <span className={styles.loader} />
+    <div className={cn}>
+      <span className={styles.loader} />
+    </div>
   )
 }
 

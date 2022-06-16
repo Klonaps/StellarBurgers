@@ -1,48 +1,38 @@
-import React, { useEffect } from 'react'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { useSelector, useDispatch } from 'react-redux'
-import { getIngredients } from '../../services/actions/ingredients-actions'
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import ProtectedRoute from '../protected-route/ProtectedRoute'
 import AppHeader from '../app-header/app-header'
-import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-import BurgerConstructor from '../burger-constructor/burger-сonstructor'
-import Error from '../error/error'
-import Loader from '../loader/loader'
-import styles from './app.module.css'
+import { MainPage, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients } from '../../pages'
 
 function App() {
-  const dispatch = useDispatch()
-  const { ingredientsRequest, ingredientsFailed } = useSelector(store => store.ingredients)
-
-  useEffect(() => {
-    dispatch(getIngredients())
-  }, [dispatch])
-
   return (
-    <>
-      {ingredientsFailed ?
-        <Error />
-        :
-        <>
-          <AppHeader />
-          {ingredientsRequest ?
-            <div className={styles.box}>
-              <Loader />
-            </div>
-            :
-            <DndProvider backend={HTML5Backend}>
-              <main className={styles.main}>
-                <div className={styles.container}>
-                  <BurgerIngredients />
-                  <BurgerConstructor />
-                </div>
-              </main>
-            </DndProvider>
-          }
-        </>
-      }
-    </>
+    <Router>
+      <AppHeader />
+      <Switch>
+        <ProtectedRoute path='/login'>
+          <Login/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile' exact>
+          <Profile/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/register' exact>
+          <Register/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/forgot-password' exact>
+          <ForgotPassword/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/reset-password' exact>
+          <ResetPassword/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/ingredients/:id' exact>
+          <Ingredients/>
+        </ProtectedRoute>
+        <Route path='/' exact>
+          <MainPage/>
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 

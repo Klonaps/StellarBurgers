@@ -1,13 +1,13 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import ProtectedRoute from '../protected-route/ProtectedRoute'
 import AppHeader from '../app-header/app-header'
-import { MainPage, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients } from '../../pages'
+import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients } from '../../pages'
 
 function App() {
   return (
-    <Router>
+    <>
       <AppHeader />
       <Switch>
         <ProtectedRoute path='/login'>
@@ -29,10 +29,10 @@ function App() {
           <Ingredients/>
         </ProtectedRoute>
         <Route path='/' exact>
-          <MainPage/>
+          <Home/>
         </Route>
       </Switch>
-    </Router>
+    </>
   )
 }
 

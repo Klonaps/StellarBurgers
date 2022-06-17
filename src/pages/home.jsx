@@ -4,10 +4,10 @@ import { getIngredients } from '../services/actions/ingredients-actions'
 
 import Error from '../components/error/error'
 import Loader from '../components/loader/loader'
-import OrderScreen from '../components/order-screen/order-screen'
+import HomePage from '../components/home-page/home-page'
 
 
-const MainPage = () => {
+const Home = () => {
   const dispatch = useDispatch()
   const { ingredientsRequest, ingredientsFailed } = useSelector(store => store.ingredients)
 
@@ -24,7 +24,7 @@ const MainPage = () => {
           {ingredientsRequest ?
             <Loader fullscreen />
           :
-            <OrderScreen/> 
+            <HomePage/> 
           }
         </>
       }
@@ -32,4 +32,4 @@ const MainPage = () => {
   )
 }
 
-export default MainPage
+export default Home

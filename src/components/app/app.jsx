@@ -1,15 +1,17 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 
 import ProtectedRoute from '../protected-route/ProtectedRoute'
 import AppHeader from '../app-header/app-header'
 import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients } from '../../pages'
 
 function App() {
+  let location = useLocation()
+  let background = location.state && location.state.background
   return (
     <>
       <AppHeader />
-      <Switch>
+      <Switch location={background || location}>
         <ProtectedRoute path='/login'>
           <Login/>
         </ProtectedRoute>
@@ -25,9 +27,9 @@ function App() {
         <ProtectedRoute path='/reset-password' exact>
           <ResetPassword/>
         </ProtectedRoute>
-        <ProtectedRoute path='/ingredients/:id' exact>
+        <Route path='/ingredients/:id' exact>
           <Ingredients/>
-        </ProtectedRoute>
+        </Route>
         <Route path='/' exact>
           <Home/>
         </Route>

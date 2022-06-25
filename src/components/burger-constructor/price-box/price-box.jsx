@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import OrderDetails from '../../order-details/order-details'
 import Modal from '../../modal/modal'
@@ -7,10 +8,22 @@ import styles from './price-box.module.css'
 
 const PriceBox = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const {ingredients, bun} = useSelector(store => store.orderIngredient)
+  const { ingredients, bun } = useSelector(store => store.orderIngredient)
+  const { user } = useSelector(store => store.user)
+  const history = useHistory()
 
   const handlerOpenModal = () => {
     setIsModalVisible(true)
+  }
+
+  const getOrder = () => {
+    if (!user) {
+      history.push({
+        pathname: '/login'
+      })
+    } else {
+      handlerOpenModal()
+    }
   }
 
   const totalPrice = () => {
@@ -26,7 +39,7 @@ const PriceBox = () => {
             <p className="text text_type_digits-medium">{totalPrice()}</p>
             <CurrencyIcon type="primary" />
           </div>
-          <Button type="primary" size="large" onClick={handlerOpenModal}>Оформить заказ</Button>
+          <Button type="primary" size="large" onClick={getOrder}>Оформить заказ</Button>
         </div>
       }
     </>

@@ -1,0 +1,12 @@
+.box {
+  display: flex;
+  height: calc(100vh - 88px);
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  gap: 50px;
+}

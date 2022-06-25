@@ -1,39 +1,64 @@
-import React from 'react'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getIngredients } from '../../services/actions/ingredients-actions'
+import { getUser } from '../../services/actions/user-actions'
 
 import ProtectedRoute from '../protected-route/ProtectedRoute'
+import ProtectedUnAuthRoute from '../protecdet-un-auth-route/ProtectedUnAuthRoute'
 import AppHeader from '../app-header/app-header'
-import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients } from '../../pages'
+import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients, Orders, NoMatch } from '../../pages'
+import Modal from '../modal/modal'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 
 function App() {
-  let location = useLocation()
-  let background = location.state && location.state.background
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
+  const background = location.state && location.state.background
+
+  useEffect(() => {
+    dispatch(getUser())
+    dispatch(getIngredients())
+  }, [dispatch])
+
+  const close = () => {
+    history.replace({ pathname: '/' })
+  }
+
   return (
     <>
       <AppHeader />
       <Switch location={background || location}>
-        <ProtectedRoute path='/login'>
+        <ProtectedUnAuthRoute path='/login'>
           <Login/>
-        </ProtectedRoute>
+        </ProtectedUnAuthRoute>
         <ProtectedRoute path='/profile' exact>
           <Profile/>
         </ProtectedRoute>
-        <ProtectedRoute path='/register' exact>
+        <ProtectedRoute path='/profile/orders' exact>
+          <Orders/>
+        </ProtectedRoute>
+        <ProtectedUnAuthRoute path='/register' exact>
           <Register/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/forgot-password' exact>
+        </ProtectedUnAuthRoute>
+        <ProtectedUnAuthRoute path='/forgot-password' exact>
           <ForgotPassword/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/reset-password' exact>
+        </ProtectedUnAuthRoute>
+        <ProtectedUnAuthRoute path='/reset-password' exact>
           <ResetPassword/>
-        </ProtectedRoute>
+        </ProtectedUnAuthRoute>
         <Route path='/ingredients/:id' exact>
           <Ingredients/>
         </Route>
         <Route path='/' exact>
           <Home/>
         </Route>
+        <Route path='*' exact>
+          <NoMatch/>
+        </Route>
       </Switch>
+      {background && <Route path="/ingredients/:id" children={<Modal title="Детали ингредиента" handlerChangeState={close}><IngredientDetails inModal/></Modal>} />}
     </>
   )
 }

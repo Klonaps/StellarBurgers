@@ -1,19 +1,13 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { getIngredients } from '../services/actions/ingredients-actions'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 import Error from '../components/error/error'
 import Loader from '../components/loader/loader'
 import HomePage from '../components/home-page/home-page'
 
-
 const Home = () => {
-  const dispatch = useDispatch()
+  document.title = 'Stellar Burgers'
   const { ingredientsRequest, ingredientsFailed } = useSelector(store => store.ingredients)
-
-  useEffect(() => {
-    dispatch(getIngredients())
-  }, [dispatch])
 
   return (
     <>

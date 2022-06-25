@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Loader from '../loader/loader'
 
-const ProtectedRoute = ({ children, ...rest }) => {
+const ProtectedUnAuthRoute = ({ children, ...rest }) => {
   const { user, userChecked } = useSelector(store => store.user)
   const location = useLocation()
 
@@ -14,12 +14,9 @@ const ProtectedRoute = ({ children, ...rest }) => {
     )
   }
 
-  if (!user) {
+  if(user) {
     return (
-      <Redirect to={{
-        pathname: "/login",
-        state: {from: location}
-      }} />
+      <Redirect to={ location.state?.from || '/' } />
     )
   }
 
@@ -34,9 +31,9 @@ const ProtectedRoute = ({ children, ...rest }) => {
   )
 }
 
-ProtectedRoute.propTypes = {
+ProtectedUnAuthRoute.propTypes = {
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool
 }
 
-export default ProtectedRoute
+export default ProtectedUnAuthRoute

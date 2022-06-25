@@ -1,8 +1,9 @@
 import React from 'react'
+import IngredientDetails from '../components/ingredient-details/ingredient-details'
 
 const Ingredients = () => {
   return (
-    <div>ingredients</div>
+    <IngredientDetails fullscreen />
   )
 }
 

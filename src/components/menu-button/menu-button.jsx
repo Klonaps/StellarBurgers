@@ -18,6 +18,7 @@ const MenuButton = React.memo((props) => {
 MenuButton.propTypes = {
   title: PropTypes.string.isRequired,
   inactive: PropTypes.bool,
+  path: PropTypes.string,
   children: PropTypes.element.isRequired
 }
 

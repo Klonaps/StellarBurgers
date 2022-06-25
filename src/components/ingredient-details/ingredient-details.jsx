@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import styles from './ingredient-details.module.css'
+import Loader from '../loader/loader'
 
-const IngredientDetails = () => {
-  const { info } = useSelector(store => store.ingredientDetails)
+const IngredientDetails = (props) => {
+  const [info, setInfo] = useState(null)
+  const { id } = useParams();
+  const { ingredients } = useSelector(store => store.ingredients)
+  const cn = props.inModal ? styles.loaderBox : ''
+
+  useEffect(() => {
+    if (ingredients) {
+      setInfo(ingredients.filter((ing) => ing._id === id)[0])
+    }
+  }, [ingredients, id])
+
+
+  if (!info) {
+    return <div className={cn}><Loader fullscreen={props.fullscreen} /></div>
+  }
 
   return (
     <div className={styles.container}>
@@ -47,6 +64,12 @@ const IngredientDetails = () => {
       </div>
     </div>
   )
+}
+
+
+IngredientDetails.propTypes = {
+  fullscreen: PropTypes.bool,
+  isModal: PropTypes.bool
 }
 
 export default IngredientDetails

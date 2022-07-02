@@ -1,0 +1,36 @@
+.box {
+  width: 100%;
+  height: calc(100vh - 88px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  margin-bottom: 24px;
+}
+.input {
+  margin-bottom: 24px;
+  height: 66px;
+}
+.registration {
+  margin-top: 80px;
+  margin-bottom: 16px;
+}
+.link {
+  color: #4C4CFF;
+}
+.link:hover {
+  color: #5f5fff;
+}
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.message {
+  position: absolute;
+  top: 255px;
+}

@@ -10,7 +10,7 @@ import NoneIngredient from './none-ingredient/none-ingredient'
 import PriceBox from './price-box/price-box'
 import IngredientBox from './ingredient-box/ingredient-box'
 
-const BurgerConstructor = React.memo(() => {
+const BurgerConstructor = () => {
   const dispatch = useDispatch()
   const { bun, ingredients } = useSelector(store => store.orderIngredient)
 
@@ -56,6 +56,6 @@ const BurgerConstructor = React.memo(() => {
       <PriceBox />
     </section>
   )
-})
+}
 
 export default BurgerConstructor

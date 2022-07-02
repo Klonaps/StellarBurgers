@@ -1,26 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import PropTypes from "prop-types"
 import { useDrag } from 'react-dnd'
-import { useSelector, useDispatch } from 'react-redux'
-import { ADD_INGREDIENT_INFO, DELETE_INGREDIENT_INFO } from '../../../services/actions/ingredient-details-actions'
+import { useSelector } from 'react-redux'
 
 import { ingredientType } from '../../../utils/prop-types'
 import {CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
-import Modal from '../../modal/modal'
-import IngredientDetails from '../../ingredient-details/ingredient-details'
 
 import styles from './burger-ingredient.module.css'
 
 const BurgerIngredient = React.memo((props) => {
-  const [isModalVisible, setIsModalVisible] = useState(false)
+  const location = useLocation()
+  const history = useHistory()
   const { _id, type, name, image, price } = props.data
   const { ingredients, bun } = useSelector(store => store.orderIngredient)
-  const dispatch = useDispatch()
-
-  const closeModal = (bool) => {
-    setIsModalVisible(bool)
-    dispatch({type: DELETE_INGREDIENT_INFO})
-  }
 
   const [, dragRef] = useDrag({
     type: 'ingredient',
@@ -28,10 +21,9 @@ const BurgerIngredient = React.memo((props) => {
   })
 
   const handlerOpenModal = () => {
-    setIsModalVisible(true)
-    dispatch({
-      type: ADD_INGREDIENT_INFO,
-      payload: props.data
+    history.replace({
+      pathname: `/ingredients/${_id}`,
+      state: { background: location }
     })
   }
 
@@ -46,7 +38,6 @@ const BurgerIngredient = React.memo((props) => {
 
   return (
     <>
-    {isModalVisible && <Modal title="Детали ингредиента" handlerChangeState={closeModal}><IngredientDetails/></Modal>}
       <div className={styles.item} onClick={handlerOpenModal} ref={dragRef}>
         {count !== 0 ? <Counter count={count} size="default" /> : ''}
         <img className={styles.img} src={image} alt={name} />

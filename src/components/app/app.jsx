@@ -1,47 +1,64 @@
 import React, { useEffect } from 'react'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { useSelector, useDispatch } from 'react-redux'
+import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { getIngredients } from '../../services/actions/ingredients-actions'
+import { getUser } from '../../services/actions/user-actions'
 
+import ProtectedRoute from '../protected-route/ProtectedRoute'
+import ProtectedUnAuthRoute from '../protecdet-un-auth-route/ProtectedUnAuthRoute'
 import AppHeader from '../app-header/app-header'
-import BurgerIngredients from '../burger-ingredients/burger-ingredients'
-import BurgerConstructor from '../burger-constructor/burger-сonstructor'
-import Error from '../error/error'
-import Loader from '../loader/loader'
-import styles from './app.module.css'
+import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients, Orders, NoMatch } from '../../pages'
+import Modal from '../modal/modal'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 
 function App() {
   const dispatch = useDispatch()
-  const { ingredientsRequest, ingredientsFailed } = useSelector(store => store.ingredients)
+  const history = useHistory()
+  const location = useLocation()
+  const background = location.state && location.state.background
 
   useEffect(() => {
+    dispatch(getUser())
     dispatch(getIngredients())
   }, [dispatch])
 
+  const close = () => {
+    history.replace({ pathname: '/' })
+  }
+
   return (
     <>
-      {ingredientsFailed ?
-        <Error />
-        :
-        <>
-          <AppHeader />
-          {ingredientsRequest ?
-            <div className={styles.box}>
-              <Loader />
-            </div>
-            :
-            <DndProvider backend={HTML5Backend}>
-              <main className={styles.main}>
-                <div className={styles.container}>
-                  <BurgerIngredients />
-                  <BurgerConstructor />
-                </div>
-              </main>
-            </DndProvider>
-          }
-        </>
-      }
+      <AppHeader />
+      <Switch location={background || location}>
+        <ProtectedUnAuthRoute path='/login'>
+          <Login/>
+        </ProtectedUnAuthRoute>
+        <ProtectedRoute path='/profile' exact>
+          <Profile/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile/orders' exact>
+          <Orders/>
+        </ProtectedRoute>
+        <ProtectedUnAuthRoute path='/register' exact>
+          <Register/>
+        </ProtectedUnAuthRoute>
+        <ProtectedUnAuthRoute path='/forgot-password' exact>
+          <ForgotPassword/>
+        </ProtectedUnAuthRoute>
+        <ProtectedUnAuthRoute path='/reset-password' exact>
+          <ResetPassword/>
+        </ProtectedUnAuthRoute>
+        <Route path='/ingredients/:id' exact>
+          <Ingredients/>
+        </Route>
+        <Route path='/' exact>
+          <Home/>
+        </Route>
+        <Route path='*' exact>
+          <NoMatch/>
+        </Route>
+      </Switch>
+      {background && <Route path="/ingredients/:id" children={<Modal title="Детали ингредиента" handlerChangeState={close}><IngredientDetails inModal/></Modal>} />}
     </>
   )
 }

@@ -1,10 +1,18 @@
 import React from 'react'
 import styles from './loader.module.css'
+import PropTypes from 'prop-types'
 
-const Loader = () => {
+const Loader = ({ fullscreen }) => {
+  const cn = fullscreen ? styles.fullscreen : ''
   return (
-    <span className={styles.loader} />
+    <div className={cn}>
+      <span className={styles.loader} />
+    </div>
   )
+}
+
+Loader.propTypes = {
+  fullscreen: PropTypes.bool
 }
 
 export default Loader

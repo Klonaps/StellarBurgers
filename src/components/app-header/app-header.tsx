@@ -21,8 +21,8 @@ const AppHeader: React.FC = React.memo(() => {
           <MenuButton title="Конструктор" path="/" inactive={pathname === '/' ? false : true}>
             <BurgerIcon type={pathname === '/' ? 'primary' : 'secondary'} />
           </MenuButton>
-          <MenuButton title="Лента заказов" inactive={pathname === '/list' ? false : true}>
-            <ListIcon type={pathname === '/list' ? 'primary' : 'secondary'} /> 
+          <MenuButton title="Лента заказов" path="/feed" inactive={pathname === '/feed' ? false : true}>
+            <ListIcon type={pathname === '/feed' ? 'primary' : 'secondary'} /> 
           </MenuButton>
         </div>
         <Logo />

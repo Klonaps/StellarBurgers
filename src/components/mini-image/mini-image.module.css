@@ -1,0 +1,19 @@
+.box__border {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(128, 26, 178, 1) 0%, rgba(76, 76, 255, 1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -8,7 +8,7 @@ import {Location} from 'history';
 import ProtectedRoute from '../protected-route/ProtectedRoute'
 import ProtectedUnAuthRoute from '../protecdet-un-auth-route/ProtectedUnAuthRoute'
 import AppHeader from '../app-header/app-header'
-import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients, Orders, NoMatch } from '../../pages'
+import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredients, Orders, Feed, NoMatch } from '../../pages'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 
@@ -53,6 +53,9 @@ function App() {
         </ProtectedUnAuthRoute>
         <Route path='/ingredients/:id' exact>
           <Ingredients/>
+        </Route>
+        <Route path='/feed' exact>
+          <Feed/>
         </Route>
         <Route path='/' exact>
           <Home/>

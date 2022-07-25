@@ -7,5 +7,6 @@ import Ingredients from "./ingredients"
 import ResetPassword from "./reset-password"
 import Orders from "./orders"
 import NoMatch from "./no-match"
+import Feed from "./feed"
 
-export { Login, Home, Profile, Register, ForgotPassword, Ingredients, ResetPassword, Orders, NoMatch }
+export { Login, Home, Profile, Register, ForgotPassword, Ingredients, ResetPassword, Orders, NoMatch, Feed }

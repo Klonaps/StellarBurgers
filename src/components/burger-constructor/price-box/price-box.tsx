@@ -1,23 +1,16 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from '../../../services/redux/hooks'
 import { useHistory } from 'react-router-dom'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import OrderDetails from '../../order-details/order-details'
 import Modal from '../../modal/modal'
-import { TIngredient, TStoreUser } from '../../../utils/types'
+import { TIngredient } from '../../../utils/types'
 import styles from './price-box.module.css'
-
-type TStore = {
-  ingredients: TIngredient[],
-  bun: TIngredient[]
-}
 
 const PriceBox: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
-  //@ts-ignore
-  const { ingredients, bun }: TStore = useSelector(store => store.orderIngredient)
-  //@ts-ignore
-  const { user }: TStoreUser  = useSelector(store => store.user)
+  const { ingredients, bun } = useSelector(store => store.orderIngredients)
+  const { user } = useSelector(store => store.user)
   const history = useHistory()
 
   const handlerOpenModal = (): void => {

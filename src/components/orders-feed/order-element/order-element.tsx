@@ -13,7 +13,14 @@ const OrderElement: React.FC = () => {
       </div>
       <p className="text text_type_main-medium">Death Star чето-там Burger</p>
       <div className={styles.details}>
-        <MiniImage />
+        <div className={styles.ingredients}>
+          <MiniImage />
+          <MiniImage />
+          <MiniImage />
+          <MiniImage />
+          <MiniImage />
+          <MiniImage />
+        </div>
         <div className={styles.sum}>
           <p className="text text_type_digits-default">480</p>
           <CurrencyIcon type={'primary'}/>

@@ -9,6 +9,7 @@
   gap: 24px;
   user-select: none;
   pointer-events: none;
+  margin-bottom: 16px;
 }
 .info {
   display: flex;
@@ -26,4 +27,9 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+.ingredients {
+  display: flex;
+  position: relative;
+  height: 64px;
 }

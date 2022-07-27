@@ -1,8 +1,7 @@
 import React, { useEffect, FC } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from '../../services/redux/hooks'
 import Loader from '../loader/loader'
-import { postOrder } from '../../services/actions/order-actions'
-import { TStore, TStoreOrder } from '../../utils/types'
+import { postOrder } from '../../services/redux/reducers/order/actions'
 
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import Done from '../../images/done.png'
@@ -11,10 +10,8 @@ import styles from './order-details.module.css'
 
 const OrderDetails: FC = () => {
   const dispatch = useDispatch()
-  //@ts-ignore
-  const { bun, ingredients }: TStore = useSelector(store => store.orderIngredient)
-  //@ts-ignore
-  const { currentOrder, orderRequest, orderFailed }: TStoreOrder = useSelector(store => store.order)
+  const { bun, ingredients } = useSelector(store => store.orderIngredients)
+  const { currentOrder, orderRequest, orderFailed } = useSelector(store => store.order)
 
   useEffect(() => {
     const getIngredientIds = () => {
@@ -23,7 +20,6 @@ const OrderDetails: FC = () => {
       bun.map(b => idsArray.push(b._id))
       return idsArray
     }
-    //@ts-ignore
     dispatch(postOrder({
       ingredients: getIngredientIds()
     }))
@@ -45,7 +41,10 @@ const OrderDetails: FC = () => {
             </div>
             :
             <div className={styles.container}>
-              <p className={`text text_type_digits-large ${styles.number}`}>{currentOrder.number}</p>
+              {currentOrder ? <p className={`text text_type_digits-large ${styles.number}`}>{currentOrder.number}</p>
+              :
+              <p className={`text text_type_digits-large ${styles.number}`}>000</p>
+              }
               <p className={`text text_type_main-medium ${styles.numberDescription}`}>
                 идентификатор заказа
               </p>

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from '../../services/redux/hooks'
 import { useInView } from 'react-intersection-observer'
-import { TIngredient } from '../../utils/types'
 
 import Tabs from './tabs/tabs'
 import Subtitle from './subtitle/subtitle'
@@ -11,8 +10,7 @@ import styles from './burger-ingredients.module.css'
 
 
 const BurgerIngredients: React.FC = () => {
-  //@ts-ignore
-  const data: TIngredient[] = useSelector(state => state.ingredients.ingredients)
+  const data = useSelector(state => state.ingredients.ingredients)
   const [current, setCurrent] = useState<string>('one')
 
   const bunRef = useRef<HTMLDivElement | null>(null)
@@ -32,6 +30,8 @@ const BurgerIngredients: React.FC = () => {
       setCurrent('three')
     }
   },[inViewBuns, inViewSauces, inViewMains])
+
+  if (!data) return <>Ничего нет</>
 
   return (
     <section className={styles.container}>

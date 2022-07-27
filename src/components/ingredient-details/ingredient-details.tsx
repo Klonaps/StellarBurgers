@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from '../../services/redux/hooks'
 import { useParams } from 'react-router-dom'
 import styles from './ingredient-details.module.css'
 import Loader from '../loader/loader'
@@ -9,16 +9,14 @@ type TIngredientDetails = {
   fullscreen?: boolean,
   inModal?: boolean
 }
-
 type TParams = {
   id: string
 }
 
 const IngredientDetails: React.FC<TIngredientDetails> = (props) => {
-  const [info, setInfo] = useState<TIngredient | null>(null)
+  const [info, setInfo] = useState<TIngredient | undefined | null>(null)
   const { id }: TParams = useParams()
-  //@ts-ignore
-  const { ingredients }: TIngredient = useSelector(store => store.ingredients)
+  const { ingredients } = useSelector(store => store.ingredients)
   const cn: string = props.inModal ? styles.loaderBox : ''
 
   useEffect(() => {

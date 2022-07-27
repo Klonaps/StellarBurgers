@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteBurgerIngredient, SORT_BURGER_INGREDIENTS } from '../../../services/actions/order-ingredient-actions'
+import { useDispatch, useSelector } from '../../../services/redux/hooks'
+import { deleteBurgerIngredient, sortBurgerIngredients } from '../../../services/redux/reducers/order-ingredients/actions'
 import { useDrop, useDrag } from 'react-dnd'
-import { TOrderIngredient, TStoreOrderIngredient } from '../../../utils/types'
+import { TOrderIngredient } from '../../../utils/types'
 import type { Identifier, XYCoord } from 'dnd-core'
 
 import styles from './ingredient-box.module.css'
@@ -14,18 +14,14 @@ type TDragItem = {
 
 const IngredientBox: React.FC<TOrderIngredient> = (props) => {
   const dispatch = useDispatch()
-  //@ts-ignore
-  const { ingredients }: TStoreOrderIngredient = useSelector(store => store.orderIngredient)
+  const { ingredients } = useSelector(store => store.orderIngredients)
   const ingredientRef = useRef<HTMLDivElement | null>(null)
 
   const sortBurger = (item: TOrderIngredient): void => {
     const ingredientIndex: number = [...ingredients].findIndex((element)  => element.uuid === props.uuid)
     const newIngredientPosition: TOrderIngredient[] = [...ingredients].filter((element) => element.uuid !== item.uuid)
     newIngredientPosition.splice(ingredientIndex, 0, item)
-    dispatch({
-      type: SORT_BURGER_INGREDIENTS,
-      payload: newIngredientPosition,
-    })
+    dispatch(sortBurgerIngredients(newIngredientPosition))
   }
 
   const [{isDrag}, dragIngredientRef] = useDrag({

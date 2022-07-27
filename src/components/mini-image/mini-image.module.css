@@ -1,3 +1,29 @@
+.img__box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.img__box:nth-child(2) {
+  left: 50px;
+  z-index: 9;
+}
+.img__box:nth-child(3) {
+  left: 100px;
+  z-index: 8;
+}
+.img__box:nth-child(4) {
+  left: 150px;
+  z-index: 7;
+}
+.img__box:nth-child(5) {
+  left: 200px;
+  z-index: 6;
+}
+.img__box:nth-child(6) {
+  left: 250px;
+  z-index: 5;
+}
 .box__border {
   width: 64px;
   height: 64px;

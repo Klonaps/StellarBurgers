@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { getIngredients } from '../../services/actions/ingredients-actions'
-import { getUser } from '../../services/actions/user-actions'
-import {Location} from 'history';
+import { useDispatch } from '../../services/redux/hooks'
+import { getIngredients } from '../../services/redux/reducers/ingredients/actions'
+import { getUser } from '../../services/redux/reducers/user/actions'
+import {Location} from 'history'
 
 import ProtectedRoute from '../protected-route/ProtectedRoute'
 import ProtectedUnAuthRoute from '../protecdet-un-auth-route/ProtectedUnAuthRoute'
@@ -12,16 +12,14 @@ import { Home, Login, Profile, Register, ResetPassword, ForgotPassword, Ingredie
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 
-function App() {
+const App: React.FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const location = useLocation<{ background?: Location<{} | null | undefined> }>()
   const background = location.state?.background
 
   useEffect(() => {
-    //@ts-ignore
     dispatch(getUser())
-    //@ts-ignore
     dispatch(getIngredients())
   }, [dispatch])
 

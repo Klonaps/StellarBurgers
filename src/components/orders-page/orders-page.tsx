@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../services/actions/user-actions'
+import { useSelector, useDispatch } from '../../services/redux/hooks'
+import { logout } from '../../services/redux/reducers/user/actions'
 import { Redirect } from 'react-router-dom'
-import { TStoreUser } from '../../utils/types'
 
 import ProfileLink from '../profile-link/profile-link'
 import Loader from '../loader/loader'
@@ -12,11 +11,9 @@ import styles from './orders-page.module.css'
 
 const ProfilePage: FC = () => {
   const dispatch = useDispatch()
-  //@ts-ignore
-  const { isLogout, logoutRequest, logoutFailed }: TStoreUser = useSelector(store => store.user)
+  const { isLogout, logoutRequest, logoutFailed } = useSelector(store => store.user)
 
   const getLogout = (): void => {
-    //@ts-ignore
     dispatch(logout())
   }
 

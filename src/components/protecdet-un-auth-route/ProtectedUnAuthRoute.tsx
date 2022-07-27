@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { Route, Redirect, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { TStoreUser } from '../../utils/types'
+import { useSelector } from '../../services/redux/hooks'
 import Loader from '../loader/loader'
 
 type TUnProtectedRoute = {
@@ -11,8 +10,7 @@ type TUnProtectedRoute = {
 }
 
 const ProtectedUnAuthRoute: FC<TUnProtectedRoute> = ({ children, ...rest }) => {
-  //@ts-ignore
-  const { user, userChecked }: TStoreUser = useSelector(store => store.user)
+  const { user, userChecked } = useSelector(store => store.user)
   const location: any = useLocation()
 
   if (!userChecked) {

@@ -1,9 +1,8 @@
 import React, { useState, FC } from 'react'
 import styles from './reset-password-page.module.css'
 import { Link, Redirect } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { recoveryPasswordSend } from '../../services/actions/recovery-actions'
-import { TStoreRecovery } from '../../utils/types'
+import { useDispatch, useSelector } from '../../services/redux/hooks'
+import { recoveryPasswordSend } from '../../services/redux/reducers/recovery/actions'
 
 import InputLoader from '../input-loader/input-loader'
 import Message from '../message/message'
@@ -12,14 +11,12 @@ import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burg
 const ResetPasswordPage: FC = () => {
   const [token, setToken] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  // @ts-ignore
-  const { emailSended, errorMessage, passwordRecovered, isRequest, isFailed }: TStoreRecovery = useSelector(store => store.recovery)
+  const { emailSended, errorMessage, passwordRecovered, isRequest, isFailed } = useSelector(store => store.recovery)
   const dispatch = useDispatch()
 
   const sendRecoveryData = (e: React.SyntheticEvent): void => {
     e.preventDefault()
     if (password.length > 5) {
-      // @ts-ignore
       dispatch(recoveryPasswordSend({
         password: password,
         token: token

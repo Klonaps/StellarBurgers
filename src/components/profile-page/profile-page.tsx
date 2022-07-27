@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, FC } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateUserInfo, logout } from '../../services/actions/user-actions'
+import { useSelector, useDispatch } from '../../services/redux/hooks'
+import { updateUserInfo, logout } from '../../services/redux/reducers/user/actions'
 import { Redirect } from 'react-router-dom'
-import { TStoreUser } from '../../utils/types'
 
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import ProfileLink from '../profile-link/profile-link'
@@ -16,8 +15,7 @@ import styles from './profile-page.module.css'
 
 const ProfilePage: FC = () => {
   const dispatch = useDispatch()
-  //@ts-ignore
-  const { user, message, updateInfoFailed, updateInfoRequest, updateInfoSuccess, isLogout, logoutRequest, logoutFailed }: TStoreUser = useSelector(store => store.user)
+  const { user, message, updateInfoFailed, updateInfoRequest, updateInfoSuccess, isLogout, logoutRequest, logoutFailed } = useSelector(store => store.user)
   const [ dataChanged, setDataChanged ] = useState<boolean>(false)
   const [ name, setName ] = useState<string>('')
   const [ isNameEdit, setIsNameEdit ] = useState<boolean>(true)
@@ -91,12 +89,10 @@ const ProfilePage: FC = () => {
     }
     setIsNameEdit(true)
     setIsEmailEdit(true)
-    //@ts-ignore
     dispatch(updateUserInfo(body))
   }
 
   const getLogout = (): void => {
-    //@ts-ignore
     dispatch(logout())
   }
 

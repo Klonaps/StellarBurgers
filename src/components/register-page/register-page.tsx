@@ -1,9 +1,9 @@
 import React, { useState, FC } from 'react'
 import styles from './register-page.module.css'
 import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { register, REGISTER_FAILED } from '../../services/actions/user-actions'
-import { TStoreUser } from '../../utils/types'
+import { useSelector, useDispatch } from '../../services/redux/hooks'
+import { register } from '../../services/redux/reducers/user/actions'
+import { registerFailed } from '../../services/redux/reducers/user/actions'
 
 import InputLoader from '../input-loader/input-loader'
 import Message from '../message/message'
@@ -16,8 +16,7 @@ const RegisterPage: FC = () => {
   const [password, setPassword] = useState<string>('')
 
   const dispatch = useDispatch()
-  //@ts-ignore
-  const { registerRequest, registerFailed, registerMessage }: TStoreUser = useSelector(store => store.user)
+  const { registerRequest, isRegisterFailed, registerMessage } = useSelector(store => store.user)
   
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setName(e.target.value)
@@ -31,12 +30,8 @@ const RegisterPage: FC = () => {
   const onSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault()
     if (password.length <= 3) {
-      dispatch({
-        type: REGISTER_FAILED,
-        payload: 'Пароль должен быть больше 3-х символов'
-      })
+      dispatch(registerFailed('Пароль должен быть больше 3-х символов'))
     } else {
-      //@ts-ignore
       dispatch(register({
         email: email,
         password: password,
@@ -57,7 +52,7 @@ const RegisterPage: FC = () => {
             value={name}
             onChange={onChangeName}
             name={'name'}
-            error={registerFailed}
+            error={isRegisterFailed}
             size={'default'}
           />
         </div>
@@ -68,7 +63,7 @@ const RegisterPage: FC = () => {
             value={email}
             onChange={onChangeEmail}
             name={'email'}
-            error={registerFailed}
+            error={isRegisterFailed}
             size={'default'}
           />
         </div>
@@ -76,7 +71,7 @@ const RegisterPage: FC = () => {
           <PasswordInput onChange={onChangePassword} value={password} name={'password'} />
         </div>
         <Button type="primary" size="medium">Зарегистрироваться</Button>
-        {registerFailed && <div className={styles.message}><Message err>{registerMessage}</Message></div>}
+        {isRegisterFailed && <div className={styles.message}><Message err>{registerMessage}</Message></div>}
       </form>
       <div className={styles.login}>
         <p className="text text_type_main-default text_color_inactive">Уже зарегистрированны? <Link to={`/login`} className={styles.link}>Войти</Link></p>

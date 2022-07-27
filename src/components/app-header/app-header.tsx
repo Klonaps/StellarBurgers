@@ -1,7 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { TStoreUser } from '../../utils/types'
+import { useSelector } from '../../services/redux/hooks'
 
 import styles from './app-header.module.css'
 
@@ -9,8 +8,7 @@ import {Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-devel
 import MenuButton from '../menu-button/menu-button'
 
 const AppHeader: React.FC = React.memo(() => {
-  //@ts-ignore
-  const { user }: TStoreUser = useSelector(store => store.user)
+  const { user } = useSelector(store => store.user)
   const { pathname } = useLocation()
   const profile: string = user ? user.email : 'Личный кабинет'
 

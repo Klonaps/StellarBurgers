@@ -11,7 +11,7 @@ export type TIngredient = {
   image_mobile: string,
   image_large: string,
   __v: number,
-  count: number
+  count: number,
 }
 
 export type TUser = {
@@ -79,4 +79,21 @@ type TOwner = {
 
 export type TFetchBody = {
   ingredients: string[]
+}
+
+export interface ISocketOrders extends Omit<TOrder, 'ingredients'> {
+  ingredients: string[],
+  status: 'done' | 'pending' | 'created'
+}
+
+export type TWsMessageActions = {
+  orders: ISocketOrders[],
+  total: number,
+  totalToday: number,
+  success: string
+}
+
+export type TFetchOnceOrder = {
+  success: string,
+  orders: ISocketOrders[]
 }

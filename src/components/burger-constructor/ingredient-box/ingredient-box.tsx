@@ -9,7 +9,7 @@ import styles from './ingredient-box.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
 type TDragItem = {
-  index: number
+  index?: number
 } & TOrderIngredient
 
 const IngredientBox: React.FC<TOrderIngredient> = (props) => {
@@ -17,7 +17,7 @@ const IngredientBox: React.FC<TOrderIngredient> = (props) => {
   const { ingredients } = useSelector(store => store.orderIngredients)
   const ingredientRef = useRef<HTMLDivElement | null>(null)
 
-  const sortBurger = (item: TOrderIngredient): void => {
+  const sortBurger = (item: any): void => {
     const ingredientIndex: number = [...ingredients].findIndex((element)  => element.uuid === props.uuid)
     const newIngredientPosition: TOrderIngredient[] = [...ingredients].filter((element) => element.uuid !== item.uuid)
     newIngredientPosition.splice(ingredientIndex, 0, item)
@@ -39,7 +39,7 @@ const IngredientBox: React.FC<TOrderIngredient> = (props) => {
         handlerId: monitor.getHandlerId(),
       }
     },
-    hover(item, monitor) {
+    hover(item: any, monitor) {
       if (!ingredientRef.current) {
         return
       }
@@ -59,7 +59,6 @@ const IngredientBox: React.FC<TOrderIngredient> = (props) => {
         return
       }
       sortBurger(item)
-      item.index = hoverIndex
     }
   })
 

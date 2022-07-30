@@ -1,6 +1,7 @@
-import { DefaultResponse, TDeleteRefreshToken, TFetchUserInfo, TGetNewToken, TFetchOrder, TFetchBody } from './types'
+import { DefaultResponse, TDeleteRefreshToken, TFetchUserInfo, TGetNewToken, TFetchOrder, TFetchBody, TFetchOnceOrder } from './types'
 
 export const BASE_URL: string = 'https://norma.nomoreparties.space/api/'
+export const WS_URL: string = 'wss://norma.nomoreparties.space/orders'
 export const ingredients: string = 'ingredients'
 export const orders: string = 'orders'
 export const passwordReset: string = 'password-reset'
@@ -59,4 +60,13 @@ export const fetchOrder = (accessToken: string, body: TFetchBody): Promise<Defau
       },
       body: JSON.stringify(body)
     })
+}
+
+export const fetchOnceOrder = (id: string): Promise<DefaultResponse<TFetchOnceOrder>> => {
+  return fetch(BASE_URL + orders + `/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
 }

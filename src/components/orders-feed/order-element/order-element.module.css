@@ -6,20 +6,26 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   user-select: none;
-  pointer-events: none;
   margin-bottom: 16px;
 }
 .info {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 .details {
+  margin-top: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
+}
+.status {
+  margin-top: 8px;
+}
+.done {
+  color: #00cccc;
 }
 .sum {
   height: 100%;

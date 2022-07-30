@@ -1,19 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from '../services/redux/hooks'
 
 import Error from '../components/error/error'
 import Loader from '../components/loader/loader'
 import HomePage from '../components/home-page/home-page'
 
-type TStoreIngredient = {
-  ingredientsRequest: boolean,
-  ingredientsFailed: boolean
-}
-
 const Home: React.FC = () => {
   document.title = 'Stellar Burgers'
-  //@ts-ignore
-  const { ingredientsRequest, ingredientsFailed }: TStoreIngredient = useSelector(store => store.ingredients)
+  const { ingredientsRequest, ingredientsFailed } = useSelector(store => store.ingredients)
 
   return (
     <>

@@ -4,6 +4,7 @@ import { logout } from '../../services/redux/reducers/user/actions'
 import { Redirect } from 'react-router-dom'
 
 import ProfileLink from '../profile-link/profile-link'
+import OrdersFeed from '../orders-feed/orders-feed'
 import Loader from '../loader/loader'
 import Error from '../error/error'
 
@@ -43,6 +44,9 @@ const ProfilePage: FC = () => {
           <p className={`${styles.description} text text_type_main-default text_color_inactive`}>
             В этом разделе вы можете посмотреть свою историю заказов
           </p>
+        </div>
+        <div className={styles.feed}>
+          <OrdersFeed status />
         </div>
       </div>
     </div>

@@ -1,0 +1,51 @@
+.content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  width: 640px;
+}
+.number {
+  margin-bottom: 40px;
+  text-align: center;
+}
+.number__modal {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.name {
+  margin-bottom: 12px;
+}
+.status {
+  margin-bottom: 60px;
+}
+.done {
+  color: #00cccc;
+}
+.compound {
+  margin-bottom: 24px;
+}
+.order {
+  max-height: 315px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  padding-right: 24px;
+  margin-bottom: 40px;
+}
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

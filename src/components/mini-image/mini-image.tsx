@@ -1,14 +1,26 @@
 import React from 'react'
 import styles from './mini-image.module.css'
 
-const MiniImage: React.FC = () => {
+type TMiniInmage = {
+  image: string,
+  number?: number
+}
+
+const MiniImage: React.FC<TMiniInmage> = (props) => {
   return (
     <div className={styles.img__box}>
       <div className={styles.box__border}>
         <div className={styles.box}>
-          <img src={'https://code.s3.yandex.net/react/code/bun-02.png'} alt="img"
-            height='52px'
-          />
+          {props.number ?
+          <>
+            <div className={styles.shadow}>
+              <p className="text text_type_digits-default">+{props.number}</p>
+            </div>
+            <img src={props.image} alt="Ингредиент" height='52px' />
+          </>
+          :
+          <img src={props.image} alt="Ингредиент" height='52px' />
+          }
         </div>
       </div>
     </div>

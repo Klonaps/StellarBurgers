@@ -7,7 +7,9 @@ const FeedPage: React.FC = () => {
   return (
     <main className={styles.main}>
         <div className={styles.container}>
-          <div className={styles.feed}><OrdersFeed title="Лента заказов" /></div>
+          <div className={styles.feed}>
+            <OrdersFeed title="Лента заказов" />
+          </div>
           <OrdersInfo />
         </div>
       </main>

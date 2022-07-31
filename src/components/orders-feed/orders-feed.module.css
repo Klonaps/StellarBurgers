@@ -1,0 +1,19 @@
+.box {
+  margin-top: 40px;
+  width: 100%;
+}
+.title {
+  margin-bottom: 30px;
+}
+.feed {
+  height: calc(100vh - 250px);
+  overflow-x: hidden;
+  padding-right: 8px;
+  box-sizing: border-box;
+}
+.feedwithout {
+  height: calc(100vh - 160px);
+  overflow-x: hidden;
+  padding-right: 8px;
+  box-sizing: border-box;
+}

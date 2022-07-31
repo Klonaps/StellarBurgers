@@ -1,0 +1,41 @@
+.box {
+  width: 100%;
+  border-radius: 40px;
+  background: #2f2f37;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  margin-bottom: 16px;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.details {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.status {
+  margin-top: 8px;
+}
+.done {
+  color: #00cccc;
+}
+.sum {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.ingredients {
+  display: flex;
+  position: relative;
+  height: 64px;
+}

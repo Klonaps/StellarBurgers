@@ -1,6 +1,7 @@
-import { DefaultResponse, TDeleteRefreshToken, TFetchUserInfo, TGetNewToken, TFetchOrder } from './types'
+import { DefaultResponse, TDeleteRefreshToken, TFetchUserInfo, TGetNewToken, TFetchOrder, TFetchBody, TFetchOnceOrder } from './types'
 
 export const BASE_URL: string = 'https://norma.nomoreparties.space/api/'
+export const WS_URL: string = 'wss://norma.nomoreparties.space/orders'
 export const ingredients: string = 'ingredients'
 export const orders: string = 'orders'
 export const passwordReset: string = 'password-reset'
@@ -11,7 +12,7 @@ export const LOGOUT: string = 'auth/logout'
 export const USER: string = 'auth/user'
 export const TOKEN: string = 'auth/token'
 
-export const checkResponse = <T>(res: Response) => {
+export const checkResponse = <T>(res: DefaultResponse<T>) => {
   return res.ok ? res.json() : res.json().then((err: any )=> Promise.reject(err))
 }
 
@@ -49,7 +50,7 @@ export const getNewToken = (token: string): Promise<DefaultResponse<TGetNewToken
   })
 }
 
-export const fetchOrder = (accessToken: string, body: Array<string>): Promise<DefaultResponse<TFetchOrder>> => {
+export const fetchOrder = (accessToken: string, body: TFetchBody): Promise<DefaultResponse<TFetchOrder>> => {
   return fetch(BASE_URL + orders, {
       method: 'POST',
       mode: 'cors',
@@ -59,4 +60,13 @@ export const fetchOrder = (accessToken: string, body: Array<string>): Promise<De
       },
       body: JSON.stringify(body)
     })
+}
+
+export const fetchOnceOrder = (id: string): Promise<DefaultResponse<TFetchOnceOrder>> => {
+  return fetch(BASE_URL + orders + `/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
 }

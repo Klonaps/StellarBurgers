@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import styles from './login-page.module.css'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../services/actions/user-actions'
-import { CHANGE_RECOVERY_STATUS } from '../../services/actions/recovery-actions'
-import { TStoreUser } from '../../utils/types'
+import { useDispatch, useSelector } from '../../services/redux/hooks'
+import { login } from '../../services/redux/reducers/user/actions'
+import { changeRecoveryStatus } from '../../services/redux/reducers/recovery/actions'
 
 import Message from '../message/message'
 import InputLoader from '../input-loader/input-loader'
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 
 const LoginPage: React.FC = () => {
-  //@ts-ignore
-  const { loginRequest, loginFailed, message }: TStoreUser = useSelector(store => store.user)
+  const { loginRequest, loginFailed, message } = useSelector(store => store.user)
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch({type: CHANGE_RECOVERY_STATUS})
+    dispatch(changeRecoveryStatus())
   }, [dispatch])
 
   const auth = (e: React.SyntheticEvent): void => {
     e.preventDefault()
     if (email.length > 1 && password.length > 1) {
-      //@ts-ignore
       dispatch(login({
         email: email,
         password: password

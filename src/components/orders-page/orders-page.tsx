@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../services/actions/user-actions'
+import { useSelector, useDispatch } from '../../services/redux/hooks'
+import { logout } from '../../services/redux/reducers/user/actions'
 import { Redirect } from 'react-router-dom'
-import { TStoreUser } from '../../utils/types'
 
 import ProfileLink from '../profile-link/profile-link'
+import OrdersFeed from '../orders-feed/orders-feed'
 import Loader from '../loader/loader'
 import Error from '../error/error'
 
@@ -12,11 +12,9 @@ import styles from './orders-page.module.css'
 
 const ProfilePage: FC = () => {
   const dispatch = useDispatch()
-  //@ts-ignore
-  const { isLogout, logoutRequest, logoutFailed }: TStoreUser = useSelector(store => store.user)
+  const { isLogout, logoutRequest, logoutFailed } = useSelector(store => store.user)
 
   const getLogout = (): void => {
-    //@ts-ignore
     dispatch(logout())
   }
 
@@ -46,6 +44,9 @@ const ProfilePage: FC = () => {
           <p className={`${styles.description} text text_type_main-default text_color_inactive`}>
             В этом разделе вы можете посмотреть свою историю заказов
           </p>
+        </div>
+        <div className={styles.feed}>
+          <OrdersFeed status />
         </div>
       </div>
     </div>

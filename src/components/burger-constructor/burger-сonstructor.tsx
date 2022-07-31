@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addBurgerIngredient, addBurgerBuns } from '../../services/actions/order-ingredient-actions'
+import { useDispatch, useSelector } from '../../services/redux/hooks'
+import { addBurgerIngredients, addBurgerBuns } from '../../services/redux/reducers/order-ingredients/actions'
 import { useDrop } from 'react-dnd'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -9,12 +9,11 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import NoneIngredient from './none-ingredient/none-ingredient'
 import PriceBox from './price-box/price-box'
 import IngredientBox from './ingredient-box/ingredient-box'
-import { TStoreOrderIngredient, TIngredient } from '../../utils/types'
+import { TIngredient } from '../../utils/types'
 
 const BurgerConstructor: React.FC = () => {
   const dispatch = useDispatch()
-  //@ts-ignore
-  const { bun, ingredients }: TStoreOrderIngredient = useSelector(store => store.orderIngredient)
+  const { bun, ingredients } = useSelector(store => store.orderIngredients)
 
   const [, dropRef] = useDrop({
     accept: 'ingredient',
@@ -25,9 +24,9 @@ const BurgerConstructor: React.FC = () => {
   const onDropHandler = (item: TIngredient): void => {
     const uuid: string = uuidv4()
     if (item.type !== 'bun') {
-      dispatch(addBurgerIngredient(item, uuid))
+      dispatch(addBurgerIngredients({...item, uuid}))
     } else {
-      dispatch(addBurgerBuns(item, uuid))
+      dispatch(addBurgerBuns({...item, uuid}))
     }
   }
 

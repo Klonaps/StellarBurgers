@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useDrag } from 'react-dnd'
-import { useSelector } from 'react-redux'
-import { TIngredient, TStore } from '../../../utils/types'
+import { useSelector } from '../../../services/redux/hooks'
+import { TIngredient } from '../../../utils/types'
 import {CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 
 import styles from './burger-ingredient.module.css'
@@ -15,8 +15,7 @@ const BurgerIngredient: React.FC<TBurgerIngredient> = React.memo((props) => {
   const location = useLocation()
   const history = useHistory()
   const { _id, type, name, image, price } = props.data
-  //@ts-ignore
-  const { ingredients, bun }: TStore = useSelector(store => store.orderIngredient)
+  const { ingredients, bun } = useSelector(store => store.orderIngredients)
 
   const [, dragRef] = useDrag({
     type: 'ingredient',

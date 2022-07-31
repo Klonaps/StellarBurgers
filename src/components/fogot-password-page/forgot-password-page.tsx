@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styles from './forgot-password-page.module.css'
 import { Link, Redirect } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { recoveryEmailSend } from '../../services/actions/recovery-actions'
-import { TStoreRecovery } from '../../utils/types'
+import { useSelector, useDispatch } from '../../services/redux/hooks'
+import { recoveryEmailSend } from '../../services/redux/reducers/recovery/actions'
 
 import InputLoader from '../input-loader/input-loader'
 import Message from '../message/message'
@@ -12,8 +11,7 @@ import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-component
 const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState<string>('')
   const [isEmailIncorrect, setIsEmailIncorrect] = useState<boolean>(false)
-  //@ts-ignore
-  const { isRequest, isFailed, emailSended, errorMessage }: TStoreRecovery = useSelector(store => store.recovery)
+  const { isRequest, isFailed, emailSended, errorMessage } = useSelector(store => store.recovery)
   const dispatch = useDispatch()
 
   
@@ -27,7 +25,6 @@ const ForgotPasswordPage: React.FC = () => {
     if (email.length < 1) {
       setIsEmailIncorrect(true)
     } else {
-      //@ts-ignore
       dispatch(recoveryEmailSend({
         email: email
       }))

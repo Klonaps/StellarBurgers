@@ -1,0 +1,14 @@
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  max-width: 1240px;
+  display: flex;
+  gap: 60px;
+}
+.feed {
+  width: 600px;
+  box-sizing: border-box;
+}

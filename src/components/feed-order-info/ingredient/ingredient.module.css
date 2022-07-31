@@ -1,0 +1,24 @@
+.ingredient {
+  height: 66px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ingredient__img {
+  position: relative;
+  height: 64px;
+  width: 64px;
+}
+
+.ingredient__name {
+  flex: 1;
+}
+
+.ingredient__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

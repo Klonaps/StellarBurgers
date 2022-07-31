@@ -1,0 +1,28 @@
+.box {
+  width: 580px;
+  margin-top: 110px;
+}
+.orders {
+  display: flex;
+  gap: 36px;
+  margin-bottom: 60px;
+}
+.order {
+  width: 272px;
+}
+.order__title {
+  margin-bottom: 24px;
+}
+.order__box {
+  display: flex;
+  flex-direction: column;
+  height: 161px;
+  flex-wrap: wrap;
+}
+.order__number {
+  margin-bottom: 8px;
+}
+.order__ready {
+  color: #00CCCC;
+  margin-bottom: 8px;
+}

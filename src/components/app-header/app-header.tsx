@@ -1,7 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { TStoreUser } from '../../utils/types'
+import { useSelector } from '../../services/redux/hooks'
 
 import styles from './app-header.module.css'
 
@@ -9,8 +8,7 @@ import {Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-devel
 import MenuButton from '../menu-button/menu-button'
 
 const AppHeader: React.FC = React.memo(() => {
-  //@ts-ignore
-  const { user }: TStoreUser = useSelector(store => store.user)
+  const { user } = useSelector(store => store.user)
   const { pathname } = useLocation()
   const profile: string = user ? user.email : 'Личный кабинет'
 
@@ -21,8 +19,8 @@ const AppHeader: React.FC = React.memo(() => {
           <MenuButton title="Конструктор" path="/" inactive={pathname === '/' ? false : true}>
             <BurgerIcon type={pathname === '/' ? 'primary' : 'secondary'} />
           </MenuButton>
-          <MenuButton title="Лента заказов" inactive={pathname === '/list' ? false : true}>
-            <ListIcon type={pathname === '/list' ? 'primary' : 'secondary'} /> 
+          <MenuButton title="Лента заказов" path="/feed" inactive={pathname === '/feed' ? false : true}>
+            <ListIcon type={pathname === '/feed' ? 'primary' : 'secondary'} /> 
           </MenuButton>
         </div>
         <Logo />

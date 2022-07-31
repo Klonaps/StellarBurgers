@@ -11,7 +11,7 @@ export type TIngredient = {
   image_mobile: string,
   image_large: string,
   __v: number,
-  count: number
+  count: number,
 }
 
 export type TUser = {
@@ -22,47 +22,6 @@ export type TUser = {
 export type TOrderIngredient = {
   uuid: string,
 } & TIngredient
-
-export type TStore = {
-  bun: TIngredient[],
-  ingredients: TIngredient[]
-}
-
-export type TStoreOrderIngredient = {
-  ingredients: TOrderIngredient[],
-  bun: TOrderIngredient[],
-}
-
-export type TStoreRecovery = {
-  emailSended: boolean,
-  isRequest: boolean,
-  isFailed: boolean,
-  passwordRecovered: boolean,
-  errorMessage: string
-}
-
-export type TStoreOrder = {
-  currentOrder: TOrder,
-  orderRequest: boolean,
-  orderFailed: boolean,
-}
-
-export type TStoreUser = {
-  user: TUser | null,
-  userChecked: boolean,
-  loginRequest: boolean,
-  loginFailed: boolean,
-  registerRequest: boolean,
-  registerFailed: boolean,
-  registerMessage: string,
-  message: string,
-  updateInfoRequest: boolean,
-  updateInfoFailed: boolean,
-  updateInfoSuccess: boolean,
-  logoutRequest: boolean,
-  logoutFailed: boolean,
-  isLogout: boolean
-}
 
 export type DefaultResponse<T>  = {
   headers: Headers,
@@ -99,7 +58,7 @@ export type TFetchOrder = {
   order: TOrder
 }
 
-type TOrder = {
+export type TOrder = {
   createdAt: string,
   ingredients: TIngredient[],
   name: string,
@@ -116,4 +75,25 @@ type TOwner = {
   email: string,
   name: string,
   updatedAt: string
+}
+
+export type TFetchBody = {
+  ingredients: string[]
+}
+
+export interface ISocketOrders extends Omit<TOrder, 'ingredients'> {
+  ingredients: string[],
+  status: 'done' | 'pending' | 'created'
+}
+
+export type TWsMessageActions = {
+  orders: ISocketOrders[],
+  total: number,
+  totalToday: number,
+  success: string
+}
+
+export type TFetchOnceOrder = {
+  success: string,
+  orders: ISocketOrders[]
 }

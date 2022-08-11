@@ -11,6 +11,10 @@ type TBurgerIngredient = {
   data: TIngredient
 }
 
+type KeyboardEvent = {
+  key: string;
+}
+
 const BurgerIngredient: React.FC<TBurgerIngredient> = React.memo((props) => {
   const location = useLocation()
   const history = useHistory()
@@ -28,6 +32,14 @@ const BurgerIngredient: React.FC<TBurgerIngredient> = React.memo((props) => {
       state: { background: location }
     })
   }
+  const handlerOpenModalWithEnter = (e: KeyboardEvent): void => {
+    if (e.key === 'Enter') {
+      history.replace({
+        pathname: `/ingredients/${_id}`,
+        state: { background: location }
+      })
+    }
+  }
 
   const calculateCount = (): number => {
     if (type === 'bun') {
@@ -41,7 +53,14 @@ const BurgerIngredient: React.FC<TBurgerIngredient> = React.memo((props) => {
 
   return (
     <>
-      <div className={styles.item} onClick={handlerOpenModal} ref={dragRef}>
+      <div
+        className={styles.item}
+        onClick={handlerOpenModal}
+        onKeyDown={handlerOpenModalWithEnter}
+        ref={dragRef}
+        tabIndex={0}
+        data-testid={'ingredient'}
+      >
         {count !== 0 ? <Counter count={count} size="default" /> : ''}
         <img className={styles.img} src={image} alt={name} />
         <div className={styles.price}>

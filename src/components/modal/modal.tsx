@@ -39,7 +39,7 @@ const Modal: React.FC<TModal> = (props) => {
     <div className={styles.container}>
       <div className={styles.modal} onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
           <div className={styles.content}>
-            <div className={styles.cross} onClick={closeModal}>
+            <div className={styles.cross} onClick={closeModal} data-testid={'close'}>
               <CloseIcon type="primary" />
             </div>
             <p className={`text text_type_main-large`}>

@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
       <p className={`text text_type_main-medium ${styles.title}`}>Вход</p>
       <form className={styles.form} onSubmit={(e) => auth(e)}>
         {loginRequest && <InputLoader />}
-        <div className={styles.input}>
+        <div className={styles.input} data-testid={'email-input'}>
           <Input
             type={'email'}
             placeholder={'Email'}
@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
             size={'default'}
             />
         </div>
-        <div className={styles.input}>
+        <div className={styles.input} data-testid={'password-input'}>
           <PasswordInput onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} value={password} name={'password'} />
         </div>
         <Button type="primary" size="medium" htmlType='submit'>

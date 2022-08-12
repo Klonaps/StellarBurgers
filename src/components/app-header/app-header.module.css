@@ -11,6 +11,12 @@
   justify-content: space-between;
   align-items: center;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 .leftmenu {
   flex: 0 410px;
   width: 410px;

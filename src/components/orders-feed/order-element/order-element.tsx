@@ -16,7 +16,7 @@ type TOrderElement = {
   name: string,
   number: number,
   id: string,
-  status?: string
+  status?: "done" | "pending" | "created" | null
 }
 
 const OrderElement: React.FC<TOrderElement> = (props) => {

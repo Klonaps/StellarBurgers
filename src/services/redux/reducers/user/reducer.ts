@@ -25,7 +25,7 @@ type TUserState = {
   isLogout: boolean
 }
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   user: null,
   userChecked: false,
   loginRequest: false,
@@ -48,7 +48,7 @@ export const userReducer = createReducer(initialState, (builder) => {
     state.userChecked = true
   })
   .addCase(getUserSuccess, (state, action) => {
-    state.user = {...action.payload}
+    state.user = action.payload
   })
   .addCase(loginRequest, (state) => {
     state.loginRequest = true

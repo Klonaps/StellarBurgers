@@ -12,7 +12,7 @@ type TOrderIngredientsState = {
   ingredients: TIngredientWithUuid[]
   bun: TIngredientWithUuid[]
 }
-const initialState: TOrderIngredientsState = {
+export const initialState: TOrderIngredientsState = {
   ingredients: [],
   bun: []
 }

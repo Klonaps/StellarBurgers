@@ -10,7 +10,7 @@ export type TWebsocketState = {
     totalToday: number
 }
 
-const initialState: TWebsocketState = {
+export const initialState: TWebsocketState = {
     status: 'offline',
     connectionError: '',
     orders: [],

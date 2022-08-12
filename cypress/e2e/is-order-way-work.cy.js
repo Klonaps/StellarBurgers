@@ -22,6 +22,17 @@ describe('Check order way', function() {
     cy.contains('Детали ингредиента')
   })
 
+  it('should check ingredient info in modal', function() {
+    cy.contains('Калории, ккал')
+    cy.contains('420')
+    cy.contains('Белки, г')
+    cy.contains('80')
+    cy.contains('Жиры, г')
+    cy.contains('24')
+    cy.contains('Углеводы, г')
+    cy.contains('53')
+  })
+
   it('should close modal', function() {
     cy.get('[data-testid="close"]').click()
   })

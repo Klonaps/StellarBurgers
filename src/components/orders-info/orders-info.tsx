@@ -5,8 +5,8 @@ import { useSelector } from '../../services/redux/hooks'
 
 const OrdersInfo: React.FC = () => {
   const { total, totalToday, orders } = useSelector(state => state.websocet)
-  const readyOrders = orders.filter((order: any) => order.status === 'done').slice(0, 10)
-  const pendingOrders = orders.filter((order: any) => order.status === 'pending').slice(0, 10)
+  const readyOrders = orders.filter((order) => order.status === 'done').slice(0, 10)
+  const pendingOrders = orders.filter((order) => order.status === 'pending').slice(0, 10)
 
   return (
     <div className={styles.box}>
@@ -14,7 +14,7 @@ const OrdersInfo: React.FC = () => {
         <div className={styles.order}>
           <p className={`text text_type_main-medium ${styles.order__title}`}>Готовы:</p>
           <div className={styles.order__box}>
-            {readyOrders.map((order: any, index: number) => (
+            {readyOrders.map((order, index: number) => (
               <p key={index} className={`text text_type_digits-default ${styles.order__ready}`}>{order.number}</p>
             ))}
           </div>
@@ -22,7 +22,7 @@ const OrdersInfo: React.FC = () => {
         <div className={styles.order}>
           <p className={`text text_type_main-medium ${styles.order__title}`}>В работе:</p>
           <div className={styles.order__box}>
-            {pendingOrders.map((order: any, index: number) => (
+            {pendingOrders.map((order, index: number) => (
               <p key={index} className={`text text_type_digits-default ${styles.order__number}`}>{order.number}</p>
             ))}
           </div>

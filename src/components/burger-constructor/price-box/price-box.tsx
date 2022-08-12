@@ -34,7 +34,7 @@ const PriceBox: React.FC = () => {
   }
 
   const totalPrice = (): number => {
-    return ingredients.reduce((sum: number, item: TIngredient) => sum + item.price, 0) + (bun.reduce((sum: number, item: TIngredient) => sum + item.price, 0) * 2)
+    return ingredients.reduce((sum: number, item) => sum + item.price, 0) + (bun.reduce((sum: number, item) => sum + item.price, 0) * 2)
   }
 
   return (

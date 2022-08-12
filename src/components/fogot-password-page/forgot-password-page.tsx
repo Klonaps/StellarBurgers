@@ -8,6 +8,12 @@ import InputLoader from '../input-loader/input-loader'
 import Message from '../message/message'
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 
+declare module 'react' {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState<string>('')
   const [isEmailIncorrect, setIsEmailIncorrect] = useState<boolean>(false)

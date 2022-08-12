@@ -5,6 +5,12 @@ import { useHistory } from 'react-router-dom'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './no-match-page.module.css'
 
+declare module 'react' {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 const NoMatchPage: React.FC = () => {
   const history = useHistory()
 

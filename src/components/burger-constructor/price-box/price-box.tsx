@@ -7,6 +7,12 @@ import Modal from '../../modal/modal'
 import { TIngredient } from '../../../utils/types'
 import styles from './price-box.module.css'
 
+declare module 'react' {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 const PriceBox: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
   const { ingredients, bun } = useSelector(store => store.orderIngredients)

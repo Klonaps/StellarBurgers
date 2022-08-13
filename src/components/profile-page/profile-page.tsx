@@ -12,12 +12,6 @@ import InputLoader from '../input-loader/input-loader'
 
 import styles from './profile-page.module.css'
 
-declare module 'react' {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-
 const ProfilePage: FC = () => {
   const dispatch = useDispatch()
   const { user, message, updateInfoFailed, updateInfoRequest, updateInfoSuccess, isLogout, logoutRequest, logoutFailed } = useSelector(store => store.user)

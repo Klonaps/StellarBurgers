@@ -4,14 +4,8 @@ import { useHistory } from 'react-router-dom'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import OrderDetails from '../../order-details/order-details'
 import Modal from '../../modal/modal'
-import { TIngredient } from '../../../utils/types'
 import styles from './price-box.module.css'
 
-declare module 'react' {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
 
 const PriceBox: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false)

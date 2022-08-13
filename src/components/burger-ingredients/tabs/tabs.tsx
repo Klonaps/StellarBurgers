@@ -1,12 +1,6 @@
 import React from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 
-declare module 'react' {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-
 type TTabs = {
   current: string,
   refs: Array<HTMLDivElement | null>,

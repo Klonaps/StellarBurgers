@@ -10,12 +10,6 @@ import Message from '../message/message'
 
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 
-declare module 'react' {
-  interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
-  }
-}
-
 const RegisterPage: FC = () => {
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')

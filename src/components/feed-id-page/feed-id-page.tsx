@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { useSelector } from '../../services/redux/hooks'
 import { fetchOnceOrder } from '../../utils/API'
 import { getCorrectDate } from '../../utils/calculate-date'
-import { getCurrentOrder, calculateSum } from '../../utils/calculating'
+import { getCurrentOrderWithCount, calculateSum } from '../../utils/calculating'
 import { ISocketOrders } from '../../utils/types'
 
 import FeedOrderInfo from '../feed-order-info/feed-order-info'
@@ -41,7 +41,7 @@ const FeedIdPage: React.FC = () => {
   if (err) return <>Произошла ошибка. Попробуйте выполнить запрос позже.</>
   if (!order) return <>Произошла ошибка. Попробуйте выполнить запрос позже.</>
 
-  const orderIngredient = getCurrentOrder(order.ingredients, ingredients)
+  const orderIngredient = getCurrentOrderWithCount(order.ingredients, ingredients)
 
   return (
     <div className={styles.box}>

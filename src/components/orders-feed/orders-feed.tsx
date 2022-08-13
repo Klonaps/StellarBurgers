@@ -21,7 +21,7 @@ const OrdersFeed: React.FC<TOrdersFeed> = (props) => {
     <div className={styles.box}>
       {props.title && <p className={`text text_type_main-large ${styles.title}`}>{props.title}</p>}
       <div className={`${cn} custom-scroll`}>
-        {ordersIsReverse.map((order: any) => 
+        {ordersIsReverse.map((order) => 
           <OrderElement
             key={order._id}
             date={order.createdAt}

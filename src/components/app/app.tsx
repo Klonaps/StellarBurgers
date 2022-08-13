@@ -13,6 +13,12 @@ import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import FeedIdModal from '../feed-id-modal/feed-id-modal'
 
+declare module 'react' {
+  interface FunctionComponent<P = {}> {
+    (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+  }
+}
+
 const App: React.FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()

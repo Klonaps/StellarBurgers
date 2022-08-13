@@ -15,7 +15,7 @@ type TReacoveryState = {
   passwordRecovered: boolean,
   errorMessage: string,
 }
-const initialState: TReacoveryState = {
+export const initialState: TReacoveryState = {
   isRequest: false,
   isFailed: false,
   emailSended: false,

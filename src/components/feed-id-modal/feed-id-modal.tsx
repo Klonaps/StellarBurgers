@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router'
 import { useSelector } from '../../services/redux/hooks'
 import { getCorrectDate } from '../../utils/calculate-date'
-import { getCurrentOrder, calculateSum } from '../../utils/calculating'
+import { getCurrentOrderWithCount, calculateSum } from '../../utils/calculating'
 
 import FeedOrderInfo from '../feed-order-info/feed-order-info'
 import Loader from '../loader/loader'
@@ -17,7 +17,7 @@ const FeedIdModal: React.FC = () => {
   const thisOrders = [...orders].find((order) => order.number === Number(params.id))
   if (!thisOrders) return <div className={styles.loader}>Такого заказа не существует</div>
 
-  const orderIngredient = getCurrentOrder(thisOrders.ingredients, ingredients)
+  const orderIngredient = getCurrentOrderWithCount(thisOrders.ingredients, ingredients)
 
   return (
     <FeedOrderInfo

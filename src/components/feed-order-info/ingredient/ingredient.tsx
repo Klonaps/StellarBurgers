@@ -8,7 +8,7 @@ type TIngredient = {
   img: string,
   name: string,
   price: number,
-  count?: string
+  count: number
 }
 
 const Ingredient: React.FC<TIngredient> = (props) => {
@@ -17,7 +17,7 @@ const Ingredient: React.FC<TIngredient> = (props) => {
       <div className={styles.ingredient__img}><MiniImage image={props.img} /></div>
       <p className={`${styles.ingredient__name} text_type_main-default`}>{props.name}</p>
       <div className={styles.ingredient__price}><p className={`text_type_digits-default`}>
-        {props.count ? props.count : 1} x {props.price}</p><CurrencyIcon type="primary" />
+        {props.count} x {props.price}</p><CurrencyIcon type="primary" />
         </div>
     </div>
   )

@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import OrderDetails from '../../order-details/order-details'
 import Modal from '../../modal/modal'
-import { TIngredient } from '../../../utils/types'
 import styles from './price-box.module.css'
+
 
 const PriceBox: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
@@ -28,7 +28,7 @@ const PriceBox: React.FC = () => {
   }
 
   const totalPrice = (): number => {
-    return ingredients.reduce((sum: number, item: TIngredient) => sum + item.price, 0) + (bun.reduce((sum: number, item: TIngredient) => sum + item.price, 0) * 2)
+    return ingredients.reduce((sum: number, item) => sum + item.price, 0) + (bun.reduce((sum: number, item) => sum + item.price, 0) * 2)
   }
 
   return (

@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "Token": "Bearer test-token",
+  "user": {
+    "email": "test@ya.ru",
+    "name": "test"
+  }
+}

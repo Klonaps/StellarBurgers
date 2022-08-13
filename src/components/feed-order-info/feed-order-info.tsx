@@ -3,7 +3,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 
 import Ingredient from './ingredient/ingredient'
 import styles from './feed-order-info.module.css'
-import { TIngredient } from '../../utils/types'
+import { TCurrentOrderWithCount } from '../../utils/types'
 
 type TFeedOrderInfo = {
   isModal?: boolean,
@@ -11,7 +11,7 @@ type TFeedOrderInfo = {
   name: string,
   date: string,
   status: string,
-  ingredients: TIngredient[],
+  ingredients: TCurrentOrderWithCount[],
   sum: number
 }
 
@@ -32,8 +32,8 @@ const FeedOrderInfo: React.FC<TFeedOrderInfo> = (props) => {
         <p className={`${styles.compound} text_type_main-medium`}>Состав:</p>
         <div className={`custom-scroll ${styles.order}`}>
           {props.ingredients?.map((ingredient, index) => {
-            if (ingredient.type === 'bun') return <Ingredient key={index} img={ingredient.image_mobile} name={ingredient.name} price={ingredient.price} count='2' />
-            return <Ingredient key={index} img={ingredient.image_mobile} name={ingredient.name} price={ingredient.price} />
+            if (ingredient.type === 'bun') return <Ingredient key={index} img={ingredient.image_mobile} name={ingredient.name} price={ingredient.price} count={2} />
+            return <Ingredient key={index} img={ingredient.image_mobile} name={ingredient.name} price={ingredient.price} count={ingredient.count}/>
           })}
         </div>
         <div className={styles.bottom}>

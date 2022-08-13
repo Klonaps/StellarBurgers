@@ -39,7 +39,7 @@ const IngredientBox: React.FC<TOrderIngredient> = (props) => {
         handlerId: monitor.getHandlerId(),
       }
     },
-    hover(item: any, monitor) {
+    hover(item, monitor) {
       if (!ingredientRef.current) {
         return
       }

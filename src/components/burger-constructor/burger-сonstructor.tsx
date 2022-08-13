@@ -32,7 +32,7 @@ const BurgerConstructor: React.FC = () => {
 
   return (
     <section className={styles.container}>
-      <div className={styles.items} ref={dropRef}>
+      <div className={styles.items} ref={dropRef} data-testid={'dropbox'}>
         <div className={styles.bun}>
           {bun.length === 0 ?
             <NoneIngredient title="Добавьте булку" type="up"/>

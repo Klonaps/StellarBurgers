@@ -97,3 +97,7 @@ export type TFetchOnceOrder = {
   success: string,
   orders: ISocketOrders[]
 }
+
+export type TCurrentOrderWithCount = {
+  count?: number
+} & TIngredient
